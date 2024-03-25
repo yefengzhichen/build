@@ -67,5 +67,5 @@ jobs:
           --platform linux/amd64,linux/arm64 \
           --output "type=image,push=true" \
           --build-arg "VERSION=${{ env.BRANCH }}" \
-          --tag yylt/proxyv2g:${{ steps.date.outputs.date }} \
+          --tag altonzhu/proxyv2g:${{ steps.date.outputs.date }} \
           --file ../${{ env.Dockerfile }} ./out
