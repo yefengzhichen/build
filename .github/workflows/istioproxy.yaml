@@ -57,7 +57,8 @@ jobs:
         cd ${{ env.PROJECT }}
         TARGET_ARCH=amd64 TARGET_OUT_LINUX=linux/amd64 TARGET_OS=linux make build_envoy
         TARGET_ARCH=arm64 TARGET_OUT_LINUX=linux/arm64 TARGET_OS=linux make build_envoy
-        tree out
+        tree ./
+        tree ./bazel-bin
 
     - name: Docker Buildx istio proxy (push)
       run: |
