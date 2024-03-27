@@ -56,7 +56,10 @@ jobs:
       run: |
         cd ${{ env.PROJECT }}
         TARGET_ARCH=amd64 TARGET_OUT_LINUX=linux/amd64 TARGET_OS=linux make build_envoy
-        tree ./bazel-bin
+        ls ./bazel-bin/envoy
+        mkdir ../${{ env.PROJECT }}/out
+        cp bazel-bin/envoy ../${{ env.PROJECT }}/out/linux_amd64/
+        tree ../${{ env.PROJECT }}/out
 
     - name: Docker Buildx istio proxy (push)
       run: |
@@ -67,4 +70,4 @@ jobs:
           --output "type=image,push=true" \
           --build-arg "VERSION=${{ env.BRANCH }}" \
           --tag altonzhu/proxyv2g:${{ steps.date.outputs.date }} \
-          --file ../${{ env.Dockerfile }} .
+          --file ../${{ env.Dockerfile }} ./out

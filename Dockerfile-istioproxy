@@ -2,8 +2,7 @@ ARG RELEASE=1.19.5-202312290818
 
 FROM yylt/proxyv2:${RELEASE}
 
-ENV SIDECAR=envoy
 # Install Envoy.
-COPY ./bazel-bin/${SIDECAR} /usr/local/bin/${SIDECAR}
-COPY ./bazel-bin/${SIDECAR} /usr/local/${SIDECAR}
-RUN chmod 0755 /usr/local/bin/${SIDECAR}
+COPY linux_amd64/envoy /usr/local/bin/envoy
+COPY linux_amd64/envoy /usr/local/envoy
+RUN chmod 0755 /usr/local/bin/envoy
