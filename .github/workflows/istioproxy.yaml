@@ -57,7 +57,7 @@ jobs:
         cd ${{ env.PROJECT }}
         TARGET_ARCH=amd64 TARGET_OUT_LINUX=linux/amd64 TARGET_OS=linux make build_envoy
         ls ./bazel-bin/envoy
-        mkdir -p ../out
+        mkdir -p ../out/linux_amd64/
         cp bazel-bin/envoy ../out/linux_amd64/
         tree ../out
 
