@@ -70,4 +70,4 @@ jobs:
           --output "type=image,push=true" \
           --build-arg "VERSION=${{ env.BRANCH }}" \
           --tag altonzhu/proxyv2g:${{ steps.date.outputs.date }} \
-          --file ../${{ env.Dockerfile }} ./out
+          --file ../${{ env.Dockerfile }} ../out
