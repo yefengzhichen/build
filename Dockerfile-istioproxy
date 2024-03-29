@@ -2,7 +2,7 @@ ARG RELEASE=1.19.5-202312290818
 
 FROM yylt/proxyv2:${RELEASE}
 
+ARG TARGETARCH
 # Install Envoy.
-COPY linux_amd64/envoy /usr/local/bin/envoy
-COPY linux_amd64/envoy /usr/local/envoy
+COPY linux_$TARGETARCH/envoy /usr/local/bin/envoy
 RUN chmod 0755 /usr/local/bin/envoy

@@ -59,6 +59,10 @@ jobs:
         ls ./bazel-bin/envoy
         mkdir -p ../out/linux_amd64/
         cp bazel-bin/envoy ../out/linux_amd64/
+        TARGET_ARCH=arm64 TARGET_OUT_LINUX=linux/arm64 TARGET_OS=linux make build_envoy
+        ls ./bazel-bin/envoy
+        mkdir -p ../out/linux_arm64/
+        cp bazel-bin/envoy ../out/linux_arm64/
         tree ../out
 
     - name: Docker Buildx istio proxy (push)
