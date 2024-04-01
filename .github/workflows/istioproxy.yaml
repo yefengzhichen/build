@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT: proxy
-  BRANCH: add-generic-proxy
+  BRANCH: 1.19.5-generic-proxy
   Dockerfile: Dockerfile-istioproxy
 
 jobs:
@@ -59,10 +59,10 @@ jobs:
         ls ./bazel-bin/envoy
         mkdir -p ../out/linux_amd64/
         cp bazel-bin/envoy ../out/linux_amd64/
-        TARGET_ARCH=arm64 TARGET_OUT_LINUX=linux/arm64 TARGET_OS=linux make build_envoy
-        ls ./bazel-bin/envoy
-        mkdir -p ../out/linux_arm64/
-        cp bazel-bin/envoy ../out/linux_arm64/
+        # TARGET_ARCH=arm64 TARGET_OUT_LINUX=linux/arm64 TARGET_OS=linux make build_envoy
+        # ls ./bazel-bin/envoy
+        # mkdir -p ../out/linux_arm64/
+        # cp bazel-bin/envoy ../out/linux_arm64/
         tree ../out
 
     - name: Docker Buildx istio proxy (push)
@@ -70,7 +70,8 @@ jobs:
         cd ${{ env.PROJECT }}
         docker buildx build \
           --cache-from "type=local,src=/tmp/.buildx-cache" \
-          --platform linux/amd64,linux/arm64 \
+          --platform linux/amd64 \
+          # --platform linux/amd64,linux/arm64 \
           --output "type=image,push=true" \
           --build-arg "VERSION=${{ env.BRANCH }}" \
           --tag altonzhu/proxyv2g:${{ steps.date.outputs.date }} \
