@@ -68,10 +68,10 @@ jobs:
     - name: Docker Buildx istio proxy (push)
       run: |
         cd ${{ env.PROJECT }}
+        # --platform linux/amd64,linux/arm64 \
         docker buildx build \
           --cache-from "type=local,src=/tmp/.buildx-cache" \
           --platform linux/amd64 \
-          # --platform linux/amd64,linux/arm64 \
           --output "type=image,push=true" \
           --build-arg "VERSION=${{ env.BRANCH }}" \
           --tag altonzhu/proxyv2g:${{ steps.date.outputs.date }} \
